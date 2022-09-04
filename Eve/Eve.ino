@@ -143,6 +143,7 @@ int ledPin3 =1;
 int ledPin4 =0;
 float sinVal;
 int ledVal;
+int lightx=0;
 
 // INITIALIZATION -- runs once at startup ----------------------------------
 
@@ -785,7 +786,17 @@ void split( // Subdivides motion path into two sub-paths w/randimization
 // MAIN LOOP -- runs continuously after setup() ----------------------------
 
 void loop() {
-
+      // convert degrees to radians then obtain sin value
+      sinVal = (sin(lightx*(3.1412/180)));
+      ledVal = int(sinVal*255);
+      analogWrite(ledPin4, ledVal);
+      if (lightx<180){
+        lightx=lightx+1;
+      }
+      else {
+        lightx=0;
+      }
+      //delay(25);
 #if defined(LIGHT_PIN) && (LIGHT_PIN >= 0) // Interactive iris
 
   int16_t v = analogRead(LIGHT_PIN);       // Raw dial/photocell reading
@@ -826,7 +837,7 @@ void CallLights()
     sinVal = (sin(x*(3.1412/180)));
     ledVal = int(sinVal*255);
     analogWrite(ledPin1,ledVal);
-    delay(10);
+    delay(3);
     }
  // analogWrite(ledPin1,0);
   for (int x=0; x<180; x++) {
@@ -834,7 +845,7 @@ void CallLights()
     sinVal = (sin(x*(3.1412/180)));
     ledVal = int(sinVal*255);
     analogWrite(ledPin2,ledVal);
-    delay(10);
+    delay(3);
     }
  // analogWrite(ledPin2,0);
   for (int x=0; x<180; x++) {
@@ -842,18 +853,10 @@ void CallLights()
     sinVal = (sin(x*(3.1412/180)));
     ledVal = int(sinVal*255);
     analogWrite(ledPin3,ledVal);
-    delay(10);
+    delay(3);
     }
   analogWrite(ledPin1,0);
   analogWrite(ledPin2,0);
   analogWrite(ledPin3,0);
-  for (int y=0; y<5; y++) {
-    for (int x=0; x<180; x++) {
-      // convert degrees to radians then obtain sin value
-      sinVal = (sin(x*(3.1412/180)));
-      ledVal = int(sinVal*255);
-      analogWrite(ledPin4, ledVal);
-      delay(25);
-    }
-  }
+
 }

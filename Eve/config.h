@@ -28,9 +28,9 @@
 //#include "graphics/doeEye.h"        // Cartoon deer eye (DISABLE TRACKING)
 
 // Optional: enable this line for startup logo (screen test/orient):
-#if !defined(ADAFRUIT_HALLOWING)    // Hallowing can't always fit logo+eye
-  #include "graphics/logo.h"        // Otherwise your choice, if it fits
-#endif
+//#if !defined(ADAFRUIT_HALLOWING)    // Hallowing can't always fit logo+eye
+//  #include "graphics/logo.h"        // Otherwise your choice, if it fits
+//#endif
 
 // EYE LIST ----------------------------------------------------------------
 
